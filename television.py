@@ -6,23 +6,19 @@ class Television:
 
     def __init__(self):
         # private, but no getters or setters so referencing directly is fine
-        self.__status: bool = False
-        self.__muted: bool = False
-        self.__volume: int = Television.MIN_VOLUME
-        self.__channel: int = Television.MIN_CHANNEL
+        self.__status = False
+        self.__muted = False
+        self.__volume = Television.MIN_VOLUME
+        self.__channel = Television.MIN_CHANNEL
 
         # The hint video said that unmuting needs to cause the volume to return
         # to the pre-muted volume, so we need to store that information
         # somewhere. I know that we're not supposed to "add any extra methods
         # to the class" but I hope this is fine, because otherwise I don't think
         # I know how to make the stateless mute() method remember something
-        self.__mute_vol_memory: int = 0
+        self.__mute_vol_memory = 0
 
     def power(self):
-        """
-        Method to turn Television on and off, where `self.__status = True` is
-        considered "on" and `self.__status = False` is considered "off"
-        """
         if self.__status:
             self.__status = False
         else:
@@ -30,9 +26,6 @@ class Television:
 
 
     def mute(self):
-        """
-        Method to mute and unmute volume
-        """
         if self.__status:
             if self.__muted:
                 # UNMUTE
@@ -50,9 +43,6 @@ class Television:
                 self.__muted = True
 
     def channel_up(self):
-        """
-        Method to increase the tv channel.
-        """
         if self.__status:
             if self.__channel < Television.MAX_CHANNEL:
                 self.__channel += 1
@@ -60,9 +50,6 @@ class Television:
                 self.__channel = Television.MIN_CHANNEL
 
     def channel_down(self):
-        """
-        Method to decrease the tv channel.
-        """
         if self.__status:
             if self.__channel > Television.MIN_CHANNEL:
                 self.__channel -= 1
@@ -70,9 +57,6 @@ class Television:
                 self.__channel = Television.MAX_CHANNEL
 
     def volume_up(self):
-        """
-        Method to increase the volume
-        """
         if self.__status:
             # Unmute if muted
             if self.__muted:
@@ -82,9 +66,6 @@ class Television:
                 self.__volume += 1
         
     def volume_down(self):
-        """
-        Method to decrease the volume
-        """
         if self.__status:
             # Unmute if muted
             if self.__muted:
@@ -94,10 +75,6 @@ class Television:
                 self.__volume -= 1
 
     def __str__(self):
-        """
-        Method to show the TV status.
-        :return: TV status
-        """
         # Muted status doesn't matter, values will be correct either way
         return (
             f'Power = {self.__status}, Channel = {self.__channel}, '
