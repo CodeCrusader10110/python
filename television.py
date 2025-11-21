@@ -28,7 +28,6 @@ class Television:
         else:
             self.__status = True
 
-
     def mute(self):
         """
         Method to mute and unmute volume
@@ -93,7 +92,7 @@ class Television:
             if self.__volume > Television.MIN_VOLUME:
                 self.__volume -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Method to show the TV status.
         :return: TV status
